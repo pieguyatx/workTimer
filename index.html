@@ -1,0 +1,100 @@
+<html>
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Work Timer | A pomodoro clock by Pius Wong">
+    <meta name="author" content="Pius Wong | www.piuswong.com">
+
+    <meta property="og:site_name" content="Work Timer | A pomodoro clock by Pius Wong" />
+    <meta property="og:title" content="Work Timer | A pomodoro clock by Pius Wong" />
+    <meta property="og:url" content=# />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="A web app to improve productivity by breaking work up into manageable chunks" />
+    <meta property="og:image" content=# />
+  	<meta name="twitter:card" content="summary_large_image" />
+  	<meta name="twitter:site" content="Work Timer" />
+  	<meta name="twitter:creator" content="@PiusWong">
+  	<meta name="twitter:title" content="Work Timer | A pomodoro clock by Pius Wong" />
+  	<meta name="twitter:description" content="A web app to improve productivity by breaking work up into manageable chunks" />
+  	<meta name="twitter:image" content=# />
+
+    <link href="https://fonts.googleapis.com/css?family=Oxygen|Patua+One" rel="stylesheet">
+    <link href='main.css' rel='stylesheet'>
+    
+  </head>
+
+  <body>
+
+    <header>
+      <h1>Work Timer</h1>
+      <h2>A pomodoro clock by <a href="http://www.piuswong.com" title="Browse some of Pius's projects.">Pius Wong</a></h2>
+    </header>
+
+    <main>
+
+      <div id="settings">
+        <div id="session">
+          <div class="label">
+            Work Time (min)
+          </div>
+          <div class="buttons">
+            <div class="decrease">
+              &minus;
+            </div>
+            <div class="number">
+              25
+            </div>
+            <div class="increase">
+              +
+            </div>
+          </div>
+        </div>
+        <div id="break">
+          <div class="label">
+            Break Time (min)
+          </div>
+          <div class="buttons">
+            <div class="decrease">
+              &minus;
+            </div>
+            <div class="number">
+              5
+            </div>
+            <div class="increase">
+              +
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="clock">
+        <div id="timeRemaining">
+          25
+        </div>
+        <div class="label">
+          minutes remaining
+        </div>
+        <canvas id="clockVis">
+          Your browser does not support the HTML5 canvas
+        </canvas>
+      </div>
+
+    </main>
+
+    <footer>
+      <div>
+        Powered by HTML/CSS/Javascript for <a href="https://www.freecodecamp.org/challenges/build-a-pomodoro-clock">freeCodeCamp</a>
+      </div>
+      <div>
+        Copyright 2017 <a href="http://www.piuswong.com" title="Browse some of Pius's projects.">Pius Wong</a>
+      </div>
+    </footer>
+
+    <script type="text/javascript" src="main.js"></script>
+
+  </body>
+
+</html>
