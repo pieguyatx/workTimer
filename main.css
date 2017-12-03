@@ -71,13 +71,13 @@ header #mainChar{
   justify-content: center;
   align-items: center;
 }
-#clock .container{
+#clockContainer{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 300px;
-  height: 300px;
+  width: 50%;
+  height: 50%;
   position: relative;
 }
 canvas#clockVis{
