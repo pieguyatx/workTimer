@@ -11,8 +11,11 @@ window.onload = function(){
   console.log(center);
   // Show minute clock
   ctx.beginPath();
-  ctx.arc(100, 75, 50, 0, 1.5 * Math.PI);
-  ctx.lineWidth=10;
-  ctx.strokeStyle="#FF0000";
+  ctx.arc(center.x, center.x, 100, 0.5*Math.PI, 1.0*Math.PI); // center, rad, start,end
+  ctx.lineWidth=10; // thickness
+  ctx.strokeStyle='#79BD9A';
   ctx.stroke();
+
+
+  '0B486B'
 };
