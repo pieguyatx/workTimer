@@ -67,12 +67,30 @@ header #mainChar{
 }
 #clock{
   margin: 10px;
-  display: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-#clockVis{
+#clock .container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   width: 300px;
   height: 300px;
-  border: solid 1px green;
+  position: relative;
+  background: -webkit-radial-gradient(rgba(0,0,0,0.5) 7%, rgba(0,0,0,0) 70%); /* Safari 5.1- 6.0 */
+  background: -o-radial-gradient(rgba(0,0,0,0.5) 7%, rgba(0,0,0,0) 70%); /* Opera 11.6-12.0 */
+  background: -moz-radial-gradient(rgba(0,0,0,0.5) 7%, rgba(0,0,0,0) 70%); /* Firefox 3.6-15 */
+  background: radial-gradient(rgba(0,0,0,0.5) 7%, rgba(0,0,0,0) 70%); /* Standard syntax */
+}
+canvas#clockVis{
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 footer{
   margin: 10px;

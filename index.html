@@ -23,7 +23,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Oxygen|Patua+One" rel="stylesheet">
     <link href='main.css' rel='stylesheet'>
-    
+
   </head>
 
   <body>
@@ -71,15 +71,17 @@
       </div>
 
       <div id="clock">
-        <div id="timeRemaining">
-          25
+        <div class="container">
+          <div id="timeRemaining">
+            25
+          </div>
+          <div class="label">
+            minutes remaining
+          </div>
+          <canvas id="clockVis">
+            Your browser does not support the HTML5 canvas
+          </canvas>
         </div>
-        <div class="label">
-          minutes remaining
-        </div>
-        <canvas id="clockVis">
-          Your browser does not support the HTML5 canvas
-        </canvas>
       </div>
 
     </main>
