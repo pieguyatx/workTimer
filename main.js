@@ -33,17 +33,26 @@ window.onload = function(){
     var thicknessDefault = (0.05)*clockElem.width;
     // Show minute clock
     ctx.beginPath();
+    ctx.arc(center.x-0.04*center.x, center.y-0.04*center.y, radiusDefault, 0.3*2*Math.PI, 0.45*2*Math.PI); // center, rad, start,end
+    ctx.lineWidth=thicknessDefault;
+    ctx.strokeStyle='rgba(0,0,0,0.2)'; // shadow
+    ctx.stroke();
+    ctx.beginPath();
     ctx.arc(center.x, center.y, radiusDefault, 0.3*2*Math.PI, 0.45*2*Math.PI); // center, rad, start,end
     ctx.lineWidth=thicknessDefault;
-    ctx.strokeStyle='#79BD9A'; // minutes?
+    ctx.strokeStyle='#3B8686'; // minutes?
     ctx.stroke();
     // Show second clock
+    ctx.beginPath();
+    ctx.arc(center.x-0.06*center.x, center.y-0.06*center.y, radiusDefault, 0.87*2*Math.PI, 0.93*2*Math.PI); // center, rad, start,end
+    ctx.lineWidth=thicknessDefault;
+    ctx.strokeStyle='rgba(0,0,0,0.2)'; // shadow
+    ctx.stroke();
     ctx.beginPath();
     ctx.arc(center.x, center.y, radiusDefault, 0.87*2*Math.PI, 0.93*2*Math.PI); // center, rad, start,end
     ctx.lineWidth=thicknessDefault;
     ctx.strokeStyle='#CFF09E'; // seconds?
     ctx.stroke();
-//    '0B486B' // shadow? dark blue
   }
 
 };
