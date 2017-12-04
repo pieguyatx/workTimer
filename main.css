@@ -99,9 +99,11 @@ button{
 }
 #timeRemaining{
   font-size: 50px;
-  cursor: pointer;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
+}
+#clockContainer:hover{
+  cursor: pointer;
 }
 #clockContainer:hover #timeRemaining{
   color: #ff4b1e;

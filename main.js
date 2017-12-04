@@ -1,6 +1,6 @@
 window.onload = function(){
 
-  // Get canvas sizes
+  // Get clock elements
   var clockElem = document.getElementById('clockVis');
   var clockContainer = document.getElementById('clockContainer');
 
@@ -11,36 +11,40 @@ window.onload = function(){
   // Also stops and resets the timer
   initializeClock();
 
-  // Start timer upon main button click
-  // Also says if it's in the work/break stage as appropriate
-  startClock();
-
-  function startClock(){
-
-  }
-
   function initializeClock(){
     var workStart = 25,
       breakStart = 5; // defaults
     // Listen for settings button clicks
-    // work time
-    var workInc = document.getElementById('work').getElementsByClassName('buttons')[0].getElementsByClassName('increase')[0];
-    workInc.addEventListener("click",function(){
-      increment(workInc);
-    });
-    var workDec = document.getElementById('work').getElementsByClassName('buttons')[0].getElementsByClassName('decrease')[0];
-    workDec.addEventListener("click",function(){
-      decrement(workInc);
-    });
-    // break time
-    var breakInc = document.getElementById('break').getElementsByClassName('buttons')[0].getElementsByClassName('increase')[0];
-    breakInc.addEventListener("click",function(){
-      increment(breakInc);
-    });
-    var breakDec = document.getElementById('break').getElementsByClassName('buttons')[0].getElementsByClassName('decrease')[0];
-    breakDec.addEventListener("click",function(){
-      decrement(breakDec);
-    });
+    adjustSettings();
+    // Listen for main button click, to start/stop timer
+    // Also says if it's in the work/break stage as appropriate
+    startClock();
+    // Start or stop the clock appropriately
+    function startClock(){
+      // Listen for click of clock buttons
+      // Listen for click of clock button to stop
+    }
+    // Set clock start settings
+    function adjustSettings(){
+      // work time
+      var workInc = document.getElementById('work').getElementsByClassName('buttons')[0].getElementsByClassName('increase')[0];
+      workInc.addEventListener("click",function(){
+        increment(workInc);
+      });
+      var workDec = document.getElementById('work').getElementsByClassName('buttons')[0].getElementsByClassName('decrease')[0];
+      workDec.addEventListener("click",function(){
+        decrement(workInc);
+      });
+      // break time
+      var breakInc = document.getElementById('break').getElementsByClassName('buttons')[0].getElementsByClassName('increase')[0];
+      breakInc.addEventListener("click",function(){
+        increment(breakInc);
+      });
+      var breakDec = document.getElementById('break').getElementsByClassName('buttons')[0].getElementsByClassName('decrease')[0];
+      breakDec.addEventListener("click",function(){
+        decrement(breakDec);
+      });
+    }
     // Increment and decrement functions
     function increment(elem){
       console.log("Increment button pressed."); // DEBUG
