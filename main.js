@@ -64,6 +64,8 @@ window.onload = function(){
     document.getElementById('min').innerHTML = parseInt(document.getElementById('work').getElementsByClassName('buttons')[0].getElementsByClassName('number')[0].innerHTML);
     // Set seconds
     document.getElementById('sec').innerHTML = '00';
+    // Stop timer
+//    clearInterval(refreshId);
   }
 
   function initializeCanvas(){

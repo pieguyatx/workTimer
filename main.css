@@ -70,19 +70,17 @@ header #mainChar{
   font-size: 20px;
   background: transparent;
   border: none;
-  -webkit-transition: all 1s;
-  transition: all 1s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 .increase:hover,.decrease:hover{
   color: #ff4b1e;
 }
-.buttons{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .buttons>div{
   margin: 10px;
+}
+button{
+  cursor: pointer;
 }
 #clock{
   margin: 10px;
@@ -101,6 +99,13 @@ header #mainChar{
 }
 #timeRemaining{
   font-size: 40px;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+#clockContainer:hover #timeRemaining{
+  color: #ff4b1e;
+  font-size: 60px;
 }
 canvas#clockVis{
   width: 300px;
