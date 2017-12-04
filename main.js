@@ -1,11 +1,61 @@
 window.onload = function(){
 
-  // Visualize clock
   // Get canvas sizes
   var clockElem = document.getElementById('clockVis');
   var clockContainer = document.getElementById('clockContainer');
 
+  // Visualize clock
   initializeCanvas();
+
+  // Set timer according to settings buttons
+  // Also stops and resets the timer
+  initializeClock();
+
+  // Start timer upon main button click
+  // Also says if it's in the work/break stage as appropriate
+  startClock();
+
+  function initializeClock(){
+    var workStart = 25,
+      breakStart = 5; // defaults
+    // Listen for settings button clicks
+    // work time
+    var workInc = document.getElementById('work').getElementsByClassName('buttons')[0].getElementsByClassName('increase')[0];
+    workInc.addEventListener("click",function(){
+      increment(workInc);
+    });
+    var workDec = document.getElementById('work').getElementsByClassName('buttons')[0].getElementsByClassName('decrease')[0];
+    workDec.addEventListener("click",function(){
+      decrement(workInc);
+    });
+    // break time
+    var breakInc = document.getElementById('break').getElementsByClassName('buttons')[0].getElementsByClassName('increase')[0];
+    breakInc.addEventListener("click",function(){
+      increment(breakInc);
+    });
+    var breakDec = document.getElementById('break').getElementsByClassName('buttons')[0].getElementsByClassName('decrease')[0];
+    breakDec.addEventListener("click",function(){
+      decrement(breakDec);
+    });
+    // Increment and decrement functions
+    function increment(elem){
+      console.log("Increment button pressed."); // DEBUG
+      var oldNum = elem.parentElement.getElementsByClassName('number')[0].innerHTML;
+      var newNum = (parseInt(oldNum)+1);
+      elem.parentElement.getElementsByClassName('number')[0].innerHTML = newNum.toString();
+    }
+    function decrement(elem){
+      console.log("Decrement button pressed."); // DEBUG
+      var oldNum = elem.parentElement.getElementsByClassName('number')[0].innerHTML;
+      var newNum = (parseInt(oldNum)-1);
+      newNum = (newNum>=0) ? newNum : 0;
+      elem.parentElement.getElementsByClassName('number')[0].innerHTML = newNum.toString();
+    }
+  }
+
+  function startClock(){
+
+  }
 
   function initializeCanvas(){
     window.addEventListener('resize',resizeCanvas,false);
