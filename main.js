@@ -15,6 +15,10 @@ window.onload = function(){
   // Also says if it's in the work/break stage as appropriate
   startClock();
 
+  function startClock(){
+
+  }
+
   function initializeClock(){
     var workStart = 25,
       breakStart = 5; // defaults
@@ -43,6 +47,7 @@ window.onload = function(){
       var oldNum = elem.parentElement.getElementsByClassName('number')[0].innerHTML;
       var newNum = (parseInt(oldNum)+1);
       elem.parentElement.getElementsByClassName('number')[0].innerHTML = newNum.toString();
+      resetClock();
     }
     function decrement(elem){
       console.log("Decrement button pressed."); // DEBUG
@@ -50,11 +55,15 @@ window.onload = function(){
       var newNum = (parseInt(oldNum)-1);
       newNum = (newNum>=0) ? newNum : 0;
       elem.parentElement.getElementsByClassName('number')[0].innerHTML = newNum.toString();
+      resetClock();
     }
   }
 
-  function startClock(){
-
+  function resetClock(){
+    // Set minutes
+    document.getElementById('min').innerHTML = parseInt(document.getElementById('work').getElementsByClassName('buttons')[0].getElementsByClassName('number')[0].innerHTML);
+    // Set seconds
+    document.getElementById('sec').innerHTML = '00';
   }
 
   function initializeCanvas(){
