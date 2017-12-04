@@ -1,8 +1,15 @@
 window.onload = function(){
 
-  // Get clock elements
+  // Initialize clock elements, variables
   var clockElem = document.getElementById('clockVis');
   var clockContainer = document.getElementById('clockContainer');
+  var session = document.getElementById('session');
+  var clockId; // ID for setInterval timer function later
+  var state = {}; // default state of clock
+  state.session = "work";
+  state.counting = false;
+  state.workDefault = 25;
+  state.breakDefault = 5;
 
   // Visualize clock
   initializeCanvas();
@@ -12,8 +19,6 @@ window.onload = function(){
   initializeClock();
 
   function initializeClock(){
-    var workStart = 25,
-      breakStart = 5; // defaults
     // Listen for settings button clicks
     adjustSettings();
     // Listen for main button click, to start/stop timer
@@ -21,7 +26,60 @@ window.onload = function(){
     startClock();
     // Start or stop the clock appropriately
     function startClock(){
-      // Listen for click of clock buttons
+      // Listen for click of clock buttons to start
+      var clockButton = document.getElementById('clockContainer');
+      var min = document.getElementById('min');
+      var sec = document.getElementById('sec');
+      console.log(state.counting);
+      clockButton.addEventListener('click',function(){
+        // If not already counting, start counting down
+        if(state.counting===false){
+          state.counting = true;
+          clockId = setInterval(function(){
+            // Get current time
+            var numSec = parseInt(sec.innerHTML);
+            var numMin = parseInt(min.innerHTML);
+            // Adjust seconds & minutes
+            numSec--;
+            if(numSec<0){
+              if(numMin===0){ // timer ending
+                // switch session clocks
+                clearInterval(clockId);
+                var newMin;
+                if(state.session==='work'){
+                  state.session = 'break';
+                  session.innerHTML = 'on break';
+                  newMin = parseInt(document.getElementById('break').getElementsByClassName('buttons')[0].getElementsByClassName('number')[0].innerHTML);
+                }
+                else if(state.session==='break'){
+                  state.session = 'work';
+                  session.innerHTML = 'to work';
+                  newMin = parseInt(document.getElementById('work').getElementsByClassName('buttons')[0].getElementsByClassName('number')[0].innerHTML);
+                }
+                min.innerHTML = newMin;
+                sec.innerHTML = "00";
+                console.log(min.innerHTML);
+              }
+              else{ // timer still going
+                console.log("Minute passed..."); //DEBUG
+                numSec=59;
+                numMin--;
+                if(numMin<0){numMin=0;}
+              }
+            };
+            numSec = numSec.toString();
+            if(numSec.length<2){
+              numSec = "0" + numSec;
+            }
+            sec.innerHTML = numSec;
+            min.innerHTML = numMin;
+          },100);
+        }
+        // If already counting, stop counting
+        else if(state.counting===true){
+          resetClock();
+        }
+      });
       // Listen for click of clock button to stop
     }
     // Set clock start settings
@@ -57,7 +115,7 @@ window.onload = function(){
       console.log("Decrement button pressed."); // DEBUG
       var oldNum = elem.parentElement.getElementsByClassName('number')[0].innerHTML;
       var newNum = (parseInt(oldNum)-1);
-      newNum = (newNum>=0) ? newNum : 0;
+      newNum = (newNum>=1) ? newNum : 1;
       elem.parentElement.getElementsByClassName('number')[0].innerHTML = newNum.toString();
       resetClock();
     }
@@ -69,7 +127,10 @@ window.onload = function(){
     // Set seconds
     document.getElementById('sec').innerHTML = '00';
     // Stop timer
-//    clearInterval(refreshId);
+    clearInterval(clockId);
+    state.session = 'work';
+    state.counting = false;
+    session.innerHTML = 'to work';
   }
 
   function initializeCanvas(){
