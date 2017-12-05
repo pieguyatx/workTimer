@@ -55,6 +55,7 @@ window.onload = function(){
               if(numMin===0){ // timer ending
                 numSec = 0;
                 sec.innerHTML = '00'; // reset seconds
+                clearInterval(clockVizId); // end any intermediate clock animations
                 // switch session clocks
                 var newMin;
                 if(state.session==='work'){
@@ -217,7 +218,7 @@ window.onload = function(){
     ctx.beginPath();
     ctx.arc(center.x, center.y, secRad, secStart*2*Math.PI, secEnd*2*Math.PI, false); // center, rad, start,end
     ctx.lineWidth=secThick;
-    ctx.strokeStyle='#CFF09E'; // seconds
+    ctx.strokeStyle= (state.session==='work') ? '#CFF09E' : '#3B8686'; // seconds
     ctx.stroke();
     // Show tenth of a second clock
     var tenthStart = (tenth+1)/60 - 0.6/2 - 0.25;
@@ -230,7 +231,7 @@ window.onload = function(){
     ctx.beginPath();
     ctx.arc(center.x, center.y, tenthRad, tenthStart*2*Math.PI, tenthEnd*2*Math.PI, false); // center, rad, start,end
     ctx.lineWidth=tenthThick;
-    ctx.strokeStyle='#A8DBA8'; // tenth of a second
+    ctx.strokeStyle= (state.session==='work') ? '#A8DBA8' : '#79BD9A'; // tenth of a second
     ctx.stroke();
   }
 
