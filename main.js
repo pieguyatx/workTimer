@@ -34,6 +34,7 @@ window.onload = function(){
       clockButton.addEventListener('click',function(){
         // If not already counting, start counting down
         if(state.counting===false){
+          alertSessionChange(state.session);
           state.counting = true;
           clockId = setInterval(function(){
             // Get current time
@@ -46,8 +47,6 @@ window.onload = function(){
                 numSec = 0;
                 sec.innerHTML = '00'; // reset seconds
                 // switch session clocks
-                // clearInterval(clockId);
-                // state.counting = false;
                 var newMin;
                 if(state.session==='work'){
                   state.session = 'break';
@@ -59,6 +58,8 @@ window.onload = function(){
                   session.innerHTML = 'to work';
                   newMin = parseInt(document.getElementById('work').getElementsByClassName('buttons')[0].getElementsByClassName('number')[0].innerHTML);
                 }
+                // alert user of session switch
+                alertSessionChange(state.session);
                 console.log(newMin); // DEBUG
                 min.innerHTML = newMin; // reset minutes
               }
@@ -86,7 +87,15 @@ window.onload = function(){
           resetClock();
         }
       });
-      // Listen for click of clock button to stop
+      function alertSessionChange(newSession){
+        session.classList.add('tempGlow');
+        document.getElementById(newSession).classList.add('tempGlow');
+        var glowId = setInterval(function(){
+          clearInterval(glowId); // stop the clock`
+          session.classList.remove('tempGlow');
+          document.getElementById(newSession).classList.remove('tempGlow');
+        },5100);
+      }
     }
     // Set clock start settings
     function adjustSettings(){

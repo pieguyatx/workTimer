@@ -126,3 +126,21 @@ footer{
   margin: 10px;
   font-family: 'Oxygen', sans-serif;
 }
+
+.tempGlow{
+  -webkit-animation-name: tempGlow;
+  animation-name: tempGlow;
+  -webkit-animation-duration: 5s;
+  animation-duration: 5s;
+}
+@-webkit-keyframes tempGlow{
+  0%{
+    color: white;
+  }
+  10%{
+    color: red;
+  }
+  100%{
+    color: white;
+  }
+}
