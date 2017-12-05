@@ -95,6 +95,7 @@ button{
   flex-direction: column;
   width: 30%;
   height: 30%;
+  min-height: 200px;
   position: relative;
 }
 #timeRemaining{

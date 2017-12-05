@@ -41,7 +41,7 @@ window.onload = function(){
             var numSec = parseInt(sec.innerHTML);
             var numMin = parseInt(min.innerHTML);
             // Update time on clock visualization
-            redrawCanvas(numMin,0.4,0.05,numSec,0.4,0.05)
+            redrawCanvas(numMin,numSec)
             // Adjust seconds & minutes
             numSec--;
             if(numSec<0){ // seconds have passed zero
@@ -150,7 +150,7 @@ window.onload = function(){
     state.session = 'work';
     state.counting = false;
     session.innerHTML = 'to work';
-    redrawCanvas(newMin,0.4,0.05,0,0.4,0.05); // redraw clock
+    redrawCanvas(newMin,0); // redraw clock
   }
 
   function initializeCanvas(){
@@ -166,46 +166,47 @@ window.onload = function(){
     clockContainer.style.height = squareLength;
     clockElem.style.width = squareLength;
     clockElem.style.height = squareLength;
-    redrawCanvas(state.workDefault,0.4,0.05,0,0.4,0.05); // default graphics
+    redrawCanvas(state.workDefault,0); // default graphics
   }
 
   // function to visualize minutes & seconds
-  // (radius, thickness of hands as % of clockContainer width)
-  function redrawCanvas(min,minRad,minThick,sec,secRad,secThick){
+  function redrawCanvas(min,sec){
     // Define canvas context
     var ctx = clockElem.getContext('2d');
     // Clear canvas
     ctx.clearRect(0,0,clockElem.width,clockElem.height);
     // Initialize clock graphics
     var center = {};
+    var minRad = 0.37*clockElem.width, // percentage of clock container width
+      minThick = 0.07*clockElem.width,
+      secRad = 0.35*clockElem.width,
+      secThick = 0.05*clockElem.width;
     center.x = Math.round(clockElem.width/2);
     center.y = Math.round(clockElem.height/2);
-    var radiusDefault = minRad*clockElem.width;
-    var thicknessDefault = minThick*clockElem.width;
     // Show minute clock
     var minStart = -0.25;
     var minEnd = min/60-0.25;
     ctx.beginPath();
-    ctx.arc(center.x-0.02*center.x, center.y-0.02*center.y, radiusDefault, minStart*2*Math.PI, minEnd*2*Math.PI, false); // center, rad, start,end
-    ctx.lineWidth=thicknessDefault*1.3;
+    ctx.arc(center.x-0.02*center.x, center.y-0.02*center.y, minRad, minStart*2*Math.PI, minEnd*2*Math.PI, false); // center, rad, start,end
+    ctx.lineWidth=minThick*1.3;
     ctx.strokeStyle='rgba(0,0,0,0.2)'; // shadow
     ctx.stroke();
     ctx.beginPath();
-    ctx.arc(center.x, center.y, radiusDefault, minStart*2*Math.PI, minEnd*2*Math.PI, false); // center, rad, start,end
-    ctx.lineWidth=thicknessDefault;
+    ctx.arc(center.x, center.y, minRad, minStart*2*Math.PI, minEnd*2*Math.PI, false); // center, rad, start,end
+    ctx.lineWidth=minThick;
     ctx.strokeStyle='#3B8686'; // minutes?
     ctx.stroke();
     // Show second clock
     var secStart = sec/60 - 0.06/2 - 0.25;
     var secEnd = secStart + 0.06;
     ctx.beginPath();
-    ctx.arc(center.x-0.06*center.x, center.y-0.06*center.y, radiusDefault*.95, secStart*2*Math.PI, secEnd*2*Math.PI, false); // center, rad, start,end
-    ctx.lineWidth=thicknessDefault*1.5;
+    ctx.arc(center.x-0.06*center.x, center.y-0.06*center.y, secRad*.95, secStart*2*Math.PI, secEnd*2*Math.PI, false); // center, rad, start,end
+    ctx.lineWidth=secThick*1.5;
     ctx.strokeStyle='rgba(0,0,0,0.2)'; // shadow
     ctx.stroke();
     ctx.beginPath();
-    ctx.arc(center.x, center.y, radiusDefault, secStart*2*Math.PI, secEnd*2*Math.PI, false); // center, rad, start,end
-    ctx.lineWidth=thicknessDefault;
+    ctx.arc(center.x, center.y, secRad, secStart*2*Math.PI, secEnd*2*Math.PI, false); // center, rad, start,end
+    ctx.lineWidth=secThick;
     ctx.strokeStyle='#CFF09E'; // seconds?
     ctx.stroke();
   }
