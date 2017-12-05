@@ -40,8 +40,15 @@ window.onload = function(){
             // Get current time
             var numSec = parseInt(sec.innerHTML);
             var numMin = parseInt(min.innerHTML);
-            // Update time on clock visualization
-            redrawCanvas(numMin,numSec)
+            // Update clock visualization
+            var numTenth = 59;
+            var clockVizId = setInterval(function(){
+              redrawCanvas(numMin,numSec,numTenth);
+              numTenth--;
+              if(numTenth===0){
+                clearInterval(clockVizId);
+              }
+            },10);
             // Adjust seconds & minutes
             numSec--;
             if(numSec<0){ // seconds have passed zero
@@ -170,7 +177,7 @@ window.onload = function(){
   }
 
   // function to visualize minutes & seconds
-  function redrawCanvas(min,sec){
+  function redrawCanvas(min,sec,tenth){
     // Define canvas context
     var ctx = clockElem.getContext('2d');
     // Clear canvas
@@ -180,7 +187,10 @@ window.onload = function(){
     var minRad = 0.37*clockElem.width, // percentage of clock container width
       minThick = 0.07*clockElem.width,
       secRad = 0.35*clockElem.width,
-      secThick = 0.05*clockElem.width;
+      secThick = 0.05*clockElem.width,
+      tenthRad = 0.36*clockElem.width,
+      tenthThick = 0.005*clockElem.width;
+    tenth = (tenth) ? tenth : 0;
     center.x = Math.round(clockElem.width/2);
     center.y = Math.round(clockElem.height/2);
     // Show minute clock
@@ -194,7 +204,7 @@ window.onload = function(){
     ctx.beginPath();
     ctx.arc(center.x, center.y, minRad, minStart*2*Math.PI, minEnd*2*Math.PI, false); // center, rad, start,end
     ctx.lineWidth=minThick;
-    ctx.strokeStyle='#3B8686'; // minutes?
+    ctx.strokeStyle='#3B8686'; // minutes
     ctx.stroke();
     // Show second clock
     var secStart = sec/60 - 0.06/2 - 0.25;
@@ -207,7 +217,20 @@ window.onload = function(){
     ctx.beginPath();
     ctx.arc(center.x, center.y, secRad, secStart*2*Math.PI, secEnd*2*Math.PI, false); // center, rad, start,end
     ctx.lineWidth=secThick;
-    ctx.strokeStyle='#CFF09E'; // seconds?
+    ctx.strokeStyle='#CFF09E'; // seconds
+    ctx.stroke();
+    // Show tenth of a second clock
+    var tenthStart = (tenth+1)/60 - 0.6/2 - 0.25;
+    var tenthEnd = tenthStart + 0.6;
+    ctx.beginPath();
+    ctx.arc(center.x-0.02*center.x, center.y-0.02*center.y, tenthRad*1.05, tenthStart*2*Math.PI, tenthEnd*2*Math.PI, false); // center, rad, start,end
+    ctx.lineWidth=tenthThick*3;
+    ctx.strokeStyle='rgba(0,0,0,0.2)'; // shadow
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(center.x, center.y, tenthRad, tenthStart*2*Math.PI, tenthEnd*2*Math.PI, false); // center, rad, start,end
+    ctx.lineWidth=tenthThick;
+    ctx.strokeStyle='#A8DBA8'; // tenth of a second
     ctx.stroke();
   }
 
