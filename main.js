@@ -41,10 +41,13 @@ window.onload = function(){
             var numMin = parseInt(min.innerHTML);
             // Adjust seconds & minutes
             numSec--;
-            if(numSec<0){
+            if(numSec<0){ // seconds have passed zero
               if(numMin===0){ // timer ending
+                numSec = 0;
+                sec.innerHTML = '00'; // reset seconds
                 // switch session clocks
-                clearInterval(clockId);
+                // clearInterval(clockId);
+                // state.counting = false;
                 var newMin;
                 if(state.session==='work'){
                   state.session = 'break';
@@ -56,23 +59,26 @@ window.onload = function(){
                   session.innerHTML = 'to work';
                   newMin = parseInt(document.getElementById('work').getElementsByClassName('buttons')[0].getElementsByClassName('number')[0].innerHTML);
                 }
-                min.innerHTML = newMin;
-                sec.innerHTML = "00";
-                console.log(min.innerHTML);
+                console.log(newMin); // DEBUG
+                min.innerHTML = newMin; // reset minutes
               }
               else{ // timer still going
                 console.log("Minute passed..."); //DEBUG
                 numSec=59;
                 numMin--;
                 if(numMin<0){numMin=0;}
+                sec.innerHTML = numSec;
+                min.innerHTML = numMin;
               }
-            };
-            numSec = numSec.toString();
-            if(numSec.length<2){
-              numSec = "0" + numSec;
             }
-            sec.innerHTML = numSec;
-            min.innerHTML = numMin;
+            else{ // seconds have not yet passed zero
+              numSec = numSec.toString();
+              if(numSec.length<2){
+                numSec = "0" + numSec;
+              }
+              sec.innerHTML = numSec;
+              min.innerHTML = numMin;
+            }
           },100);
         }
         // If already counting, stop counting
