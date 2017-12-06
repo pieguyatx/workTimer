@@ -72,7 +72,6 @@ window.onload = function(){
                 }
                 // alert user of session switch
                 alertSessionChange(state.session);
-                console.log(newMin); // DEBUG
                 min.innerHTML = newMin; // reset minutes
               }
               else{ // timer still going
