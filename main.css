@@ -11,6 +11,8 @@ body{
   font-family: 'Oxygen', sans-serif;
   background: #0B486B;
   margin: 0;
+  -webkit-transition: all 1s;
+  transition: all 1s;
 }
 a {
   text-decoration: none;
@@ -23,10 +25,10 @@ header{
   margin: 0;
   padding: 10px 0 10px 0;
   background: rgba(0,0,0,.5);
-  background: -webkit-linear-gradient(rgb(59,134,134),rgb(11,72,107));
-  background: -o-linear-gradient(rgb(59,134,134),rgb(11,72,107));
-  background: -moz-linear-gradient(rgb(59,134,134),rgb(11,72,107));
-  background: linear-gradient(rgb(59,134,134),rgb(11,72,107));
+  background: -webkit-linear-gradient(rgb(59,134,134),rgba(59,134,134,0.5) 40%,transparent);
+  background: -o-linear-gradient(rgb(59,134,134),rgba(59,134,134,0.5) 40%,transparent);
+  background: -moz-linear-gradient(rgb(59,134,134),rgba(59,134,134,0.5) 40%,transparent);
+  background: linear-gradient(rgb(59,134,134),rgba(59,134,134,0.5) 40%,transparent);
 }
 h1, h2, h3{
   font-family: 'Patua One', cursive;

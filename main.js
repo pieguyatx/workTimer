@@ -62,11 +62,13 @@ window.onload = function(){
                   state.session = 'break';
                   session.innerHTML = 'on break';
                   newMin = parseInt(document.getElementById('break').getElementsByClassName('buttons')[0].getElementsByClassName('number')[0].innerHTML);
+                  document.getElementsByTagName('body')[0].style.background = '#07354f';
                 }
                 else if(state.session==='break'){
                   state.session = 'work';
                   session.innerHTML = 'to work';
                   newMin = parseInt(document.getElementById('work').getElementsByClassName('buttons')[0].getElementsByClassName('number')[0].innerHTML);
+                  document.getElementsByTagName('body')[0].style.background = '#0B486B';
                 }
                 // alert user of session switch
                 alertSessionChange(state.session);
